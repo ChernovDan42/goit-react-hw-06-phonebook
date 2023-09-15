@@ -1,14 +1,13 @@
+import { ContactForm } from './Contacts/ContactForm/ContactForm';
+import { ContactsFilter } from './Contacts/ContactsFilter/ContactsFilter';
+import { ContactsList } from './Contacts/ContactsList/ContactsList';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    ></div>
+    <div>
+      <ContactForm />
+      <ContactsFilter />
+      <ContactsList />
+    </div>
   );
 };
