@@ -11,7 +11,12 @@ export const ContactsFilter = () => {
 
   return (
     <>
-      <input type="text" name="filter" onChange={handleChange} />
+      <input
+        type="text"
+        name="filter"
+        autoComplete="off"
+        onChange={handleChange}
+      />
     </>
   );
 };
