@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { getContacts, getFilterValue } from 'redux/selectors';
 import { ContactItem } from './ContactItem';
+import { useMemo } from 'react';
+import css from './css/ContactsList.module.css';
 
 export const ContactsList = () => {
   const contacts = useSelector(getContacts);
@@ -16,7 +17,7 @@ export const ContactsList = () => {
   }, [contacts, filterValue]);
 
   return (
-    <ul>
+    <ul className={css.list}>
       {visibleContacts.map(({ id, name, number }) => {
         return <ContactItem key={id} name={name} number={number} id={id} />;
       })}

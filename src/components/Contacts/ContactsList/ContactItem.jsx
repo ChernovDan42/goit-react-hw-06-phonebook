@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
+import css from './css/ContactItem.module.css';
+import PropTypes from 'prop-types';
 
 export const ContactItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
@@ -9,7 +11,7 @@ export const ContactItem = ({ name, number, id }) => {
   };
 
   return (
-    <li>
+    <li className={css.contactItem}>
       <p>
         {name}: {number}
       </p>
@@ -18,4 +20,10 @@ export const ContactItem = ({ name, number, id }) => {
       </button>
     </li>
   );
+};
+
+ContactItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };

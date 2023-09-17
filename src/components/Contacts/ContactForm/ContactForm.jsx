@@ -3,9 +3,36 @@ import { addContact } from 'redux/contactsSlice';
 import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import css from './ContactForm.module.css';
+import { useState } from 'react';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+
+  // я використовую useState для анімаціі лейблу інпуту
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  // Formiк вирішив просто для практики використати
+
+  const handleChange = e => {
+    switch (e.target.name) {
+      case 'name':
+        setName(e.target.value);
+        break;
+
+      case 'number':
+        setNumber(e.target.value);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const resetForm = () => {
+    setName('');
+    setNumber('');
+  };
 
   return (
     <>
@@ -15,15 +42,16 @@ export const ContactForm = () => {
           name: '',
           number: '',
         }}
-        // validationSchema={SignupSchema}
-        onSubmit={(values, { resetForm }) => {
-          dispatch(addContact(values));
+        onSubmit={() => {
+          dispatch(addContact({ name, number }));
           resetForm();
         }}
       >
         <Form className={css.form}>
           <div className={css.inputGrope} role="group">
             <Field
+              onChange={handleChange}
+              value={name}
               className={css.field}
               id="name"
               name="name"
@@ -32,13 +60,20 @@ export const ContactForm = () => {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
             />
-            <label htmlFor="name" className={css.label}>
+            <label
+              htmlFor="name"
+              className={clsx(css.label, {
+                [css.filled]: name !== '',
+              })}
+            >
               Name
             </label>
           </div>
 
           <div className={css.inputGrope} role="group">
             <Field
+              onChange={handleChange}
+              value={number}
               className={css.field}
               id="number"
               name="number"
@@ -49,12 +84,19 @@ export const ContactForm = () => {
               maxLength="13"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             />
-            <label htmlFor="number" className={css.label}>
+            <label
+              htmlFor="number"
+              className={clsx(css.label, {
+                [css.filled]: number !== '',
+              })}
+            >
               Number
             </label>
           </div>
 
-          <button type="submit">Add contact</button>
+          <button type="submit" className={css.submitBtn}>
+            Add contact
+          </button>
         </Form>
       </Formik>
     </>
