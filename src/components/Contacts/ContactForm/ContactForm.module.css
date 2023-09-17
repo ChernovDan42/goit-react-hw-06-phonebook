@@ -1,0 +1,31 @@
+
+.form{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10px;
+    
+
+    width: 320px;
+    border: 1px solid black;
+}
+
+.inputGrope{
+position: relative;
+margin-bottom: 30px;
+}
+
+.field{
+    padding: 5px;
+    width: 100px;
+}
+
+.label{
+    position: absolute;
+    left: 5px;
+    top: 3px;
+    
+}
+
+.field:hover + .label{
+    color: aqua;
+} 

@@ -1,21 +1,11 @@
 import { Formik, Field, Form } from 'formik';
 import { addContact } from 'redux/contactsSlice';
 import { useDispatch } from 'react-redux';
-import * as Yup from 'yup';
+import clsx from 'clsx';
+import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-
-  // const SignupSchema = Yup.object().shape({
-  //   name: Yup.string()
-  //     .min(2, 'Too Short!')
-  //     .max(50, 'Too Long!')
-  //     .required('Required'),
-  //   number: Yup.string()
-  //     .min(10, 'Too Short!')
-  //     .max(13, 'Too Long!')
-  //     .required('Required'),
-  // });
 
   return (
     <>
@@ -31,10 +21,10 @@ export const ContactForm = () => {
           resetForm();
         }}
       >
-        {({ errors, touched }) => (
-          <Form>
-            <label htmlFor="name">Name</label>
+        <Form className={css.form}>
+          <div className={css.inputGrope} role="group">
             <Field
+              className={css.field}
               id="name"
               name="name"
               type="text"
@@ -42,21 +32,30 @@ export const ContactForm = () => {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
             />
+            <label htmlFor="name" className={css.label}>
+              Name
+            </label>
+          </div>
 
-            <label htmlFor="number">Number</label>
+          <div className={css.inputGrope} role="group">
             <Field
+              className={css.field}
               id="number"
               name="number"
               type="tel"
               pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
               required
-              minlength="10"
-              maxlength="13"
+              minLength="10"
+              maxLength="13"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             />
-            <button type="submit">Add contact</button>
-          </Form>
-        )}
+            <label htmlFor="number" className={css.label}>
+              Number
+            </label>
+          </div>
+
+          <button type="submit">Add contact</button>
+        </Form>
       </Formik>
     </>
   );
