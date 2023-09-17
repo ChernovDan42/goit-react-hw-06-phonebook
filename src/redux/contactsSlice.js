@@ -18,7 +18,8 @@ export const contactsSlice = createSlice({
         if (searchName(state, action.payload)) {
           return alert(`${action.payload.name} is already in contacts`);
         }
-        state.contacts.push(action.payload);
+        // state.contacts.push(action.payload);
+        return { contacts: [...state.contacts, action.payload] };
       },
       prepare(obj) {
         return {
@@ -31,9 +32,15 @@ export const contactsSlice = createSlice({
       },
     },
     deleteContact(state, action) {
-      state.contacts = state.contacts.filter(
-        contact => contact.id !== action.payload
-      );
+      // state.contacts = state.contacts.filter(
+      //   contact => contact.id !== action.payload
+      // );
+
+      return {
+        contacts: state.contacts.filter(
+          contact => contact.id !== action.payload
+        ),
+      };
     },
   },
 });
