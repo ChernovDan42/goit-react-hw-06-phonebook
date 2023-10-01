@@ -6,7 +6,9 @@ const contactsInitialState = {
 };
 
 const searchName = (state, obj) => {
-  return state.contacts.find(contact => contact.name === obj.name);
+  return state.contacts.find(
+    contact => contact.name.toLowerCase() === obj.name.toLowerCase()
+  );
 };
 
 export const contactsSlice = createSlice({
