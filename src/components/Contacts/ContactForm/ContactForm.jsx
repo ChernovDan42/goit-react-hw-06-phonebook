@@ -8,7 +8,7 @@ import { useState } from 'react';
 export const ContactForm = () => {
   const dispatch = useDispatch();
 
-  // я використовую useState для анімаціі лейблу інпуту
+  // я використовую useState для анімаціі лейблу інпуту,подивіться className на лейблах.Можливо ви підкажете інший спосіб.
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
