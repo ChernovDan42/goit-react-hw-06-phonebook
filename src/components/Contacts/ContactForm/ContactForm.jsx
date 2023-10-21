@@ -12,7 +12,7 @@ export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  // Formiк вирішив просто для практики використати
+  // Formiк вирішив для практики використати
 
   const handleChange = e => {
     switch (e.target.name) {
