@@ -11,7 +11,7 @@ const searchName = (state, obj) => {
   );
 };
 
-export const contactsSlice = createSlice({
+const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
   reducers: {
