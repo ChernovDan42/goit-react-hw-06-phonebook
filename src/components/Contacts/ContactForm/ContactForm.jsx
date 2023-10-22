@@ -1,11 +1,14 @@
 import { Formik, Field, Form } from 'formik';
 import { addContact } from 'redux/contactsSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import css from './ContactForm.module.css';
 import { useState } from 'react';
+import { getContacts } from 'redux/selectors';
+import { searchName } from '../helpers/js/searchName';
 
 export const ContactForm = () => {
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
   // я використовую useState для анімаціі лейблу інпуту,подивіться className на лейблах.Можливо ви підкажете інший спосіб.
@@ -43,6 +46,11 @@ export const ContactForm = () => {
           number: '',
         }}
         onSubmit={() => {
+          if (searchName(contacts, name)) {
+            resetForm();
+            return alert(`${name} is already in contacts`);
+          }
+
           dispatch(addContact({ name, number }));
           resetForm();
         }}
